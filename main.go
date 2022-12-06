@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"github.com/bwmarrin/discordgo"
-	"github.com/joho/godotenv"
 	"log"
 	"math/rand"
 	"os"
@@ -28,15 +27,11 @@ type Fighter struct {
 }
 
 func main() {
-	err := godotenv.Load(".env")
-	if err != nil {
-		return
-	}
 	Token = os.Getenv("DISCORD_TOKEN")
 	// Create a new Discord session using the provided bot token.
 	dg, err := discordgo.New("Bot " + Token)
 	if err != nil {
-		fmt.Println("error creating Discord session, \n", err)
+		log.Println("error creating Discord session, \n", err)
 		return
 	}
 
@@ -48,7 +43,7 @@ func main() {
 	// Open a websocket connection to Discord and begin listening. Luckily, the DiscordGo package makes this easy by calling the .Open method
 	err = dg.Open()
 	if err != nil {
-		fmt.Println("error opening connection,\n", err)
+		log.Println("error opening connection,\n", err)
 		return
 	}
 
