@@ -59,7 +59,11 @@ func main() {
 	<-sc
 
 	// Cleanly close down the Discord session.
-	dg.Close()
+	err = dg.Close()
+	if err != nil {
+		log.Println(err)
+		return
+	}
 }
 
 // This function will be called (due to AddHandler above) every time a new
@@ -73,7 +77,10 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 	var turncounter int
 
 	if m.Content == "fightbot help" {
-		s.ChannelMessageSend(m.ChannelID, "Fightbot is here to help. Initiate a fight by typing `fight` followed by a space and a ping to the user you wish to fight. Ex. `fight @User1` . Then to attack, simply type in `punch`. Once a player's HP reaches 0, they lose. ")
+		_, err = s.ChannelMessageSend(m.ChannelID, "Fightbot is here to help. Initiate a fight by typing `fight` followed by a space and a ping to the user you wish to fight. Ex. `fight @User1` . Then to attack, simply type in `punch`. Once a player's HP reaches 0, they lose. ")
+		if err != nil {
+			log.Println("Could not send message \n", err)
+		}
 	}
 
 	if len(m.Content) >= 6 && m.Content[0] == 102 && m.Content[1] == 105 && m.Content[2] == 103 && m.Content[3] == 104 && m.Content[4] == 116 && m.Content[5] == 32 && m.Content[6] == 60 && m.Content[7] == 64 && m.Content[len(m.Content)-1] == 62 && fightInit == false {
