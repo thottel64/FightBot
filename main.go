@@ -111,7 +111,7 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 		}
 	}
 
-	if m.Content == "punch" && m.Author.Mention() == initiator.ID && initiator.turn == true {
+	if (m.Content == "punch" && m.Author.Mention() == initiator.ID && initiator.turn == true) || (m.Content == "Punch" && m.Author.Mention() == initiator.ID && initiator.turn == true) || (m.Content == "PUNCH" && m.Author.Mention() == initiator.ID && initiator.turn == true) {
 		Dmg := rand.Intn(60)
 		responder.HP = responder.HP - Dmg
 		if responder.HP < 0 {
@@ -152,7 +152,7 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 	}
 
-	if m.Content == "punch" && m.Author.Mention() == responder.ID && responder.turn == true && fightInit == true {
+	if (m.Content == "punch" && m.Author.Mention() == responder.ID && responder.turn == true && fightInit == true) || (m.Content == "Punch" && m.Author.Mention() == responder.ID && responder.turn == true && fightInit == true) || (m.Content == "PUNCH" && m.Author.Mention() == responder.ID && responder.turn == true && fightInit == true) {
 		Dmg := rand.Intn(60)
 		initiator.HP = initiator.HP - Dmg
 		if initiator.HP < 0 {
