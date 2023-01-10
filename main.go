@@ -80,7 +80,7 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 	}
 	if m.Content == "count to 30" {
 		for i := 0; i <= 30; i++ {
-			_, err := s.ChannelMessageSend(m.ChannelID, string(rune(i)))
+			_, err := s.ChannelMessageSend(m.ChannelID, string(i))
 			if err != nil {
 				log.Println("count not send message \n", err)
 			}
