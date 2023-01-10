@@ -78,14 +78,6 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 			log.Println("Could not send message \n", err)
 		}
 	}
-	if m.Content == "count to 30" {
-		for i := 0; i <= 30; i++ {
-			_, err := s.ChannelMessageSend(m.ChannelID, string(i))
-			if err != nil {
-				log.Println("count not send message \n", err)
-			}
-		}
-	}
 
 	if len(m.Content) >= 6 && m.Content[0] == 102 && m.Content[1] == 105 && m.Content[2] == 103 && m.Content[3] == 104 && m.Content[4] == 116 && m.Content[5] == 32 && m.Content[6] == 60 && m.Content[7] == 64 && m.Content[len(m.Content)-1] == 62 && fightInit == false {
 		responder.ID = m.Content[6:len(m.Content)]
