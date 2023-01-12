@@ -72,14 +72,14 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 	}
 	var turncounter int
 
-	if m.Content == "fightbot help" {
+	if strings.ToLower(m.Content) == "fightbot help" {
 		_, err = s.ChannelMessageSend(m.ChannelID, "Fightbot is here to help. Initiate a fight by typing `fight` followed by a space and a ping to the user you wish to fight. Ex. `fight @User1` . Then to attack, simply type in `punch`. Once a player's HP reaches 0, they lose. ")
 		if err != nil {
 			log.Println("Could not send message \n", err)
 		}
 	}
 	// if the user types in fight followed by another user's mention, the bot initiates a fight between the two users
-	if len(m.Content) >= 6 && (string(m.Content[0:8]) == "fight <@" || string(m.Content[0:8]) == "Fight <@") && string(m.Content[len(m.Content)-1]) == ">" && fightInit == false {
+	if len(m.Content) >= 6 && (strings.ToLower(m.Content[0:8]) == "fight <@") && string(m.Content[len(m.Content)-1]) == ">" && fightInit == false {
 		responder.ID = m.Content[6:len(m.Content)]
 		initiator.ID = m.Author.Mention()
 		responder.HP, initiator.HP = 100, 100
