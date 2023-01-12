@@ -79,13 +79,7 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 		}
 	}
 	// if the user types in fight followed by another user's mention, the bot initiates a fight between the two users
-	if len(m.Content) >= 6 && (string(m.Content[0:8]) == "fight <@" || string(m.Content[0:8]) == "Fight <@") && string(m.Content[len(m.Content)-1]) == ">" {
-		_, err = s.ChannelMessageSend(m.ChannelID, "Fight Command Received")
-		if err != nil {
-			log.Println("could not send message \n", err)
-		}
-	}
-	if len(m.Content) >= 6 && (m.Content[0] == 102 || m.Content[0] == 70) && (m.Content[1] == 105 || m.Content[1] == 74) && (m.Content[2] == 103 || m.Content[2] == 71) && (m.Content[3] == 104 || m.Content[3] == 72) && (m.Content[4] == 116 || m.Content[4] == 84) && m.Content[5] == 32 && m.Content[6] == 60 && m.Content[7] == 64 && m.Content[len(m.Content)-1] == 62 && fightInit == false {
+	if len(m.Content) >= 6 && (string(m.Content[0:8]) == "fight <@" || string(m.Content[0:8]) == "Fight <@") && string(m.Content[len(m.Content)-1]) == ">" && fightInit == false {
 		responder.ID = m.Content[6:len(m.Content)]
 		initiator.ID = m.Author.Mention()
 		responder.HP, initiator.HP = 100, 100
