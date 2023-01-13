@@ -79,7 +79,7 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 		}
 	}
 	// if the user types in fight followed by another user's mention, the bot initiates a fight between the two users
-	if len(m.Content) >= 6 && (strings.ToLower(m.Content[0:8]) == "fight <@") && string(m.Content[len(m.Content)-1]) == ">" && fightInit == false {
+	if len(m.Content) >= 6 && (strings.ToLower(m.Content[0:7]) == "fight <@") && string(m.Content[len(m.Content)-1]) == ">" && fightInit == false {
 		responder.ID = m.Content[6:len(m.Content)]
 		initiator.ID = m.Author.Mention()
 		responder.HP, initiator.HP = 100, 100
