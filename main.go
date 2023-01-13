@@ -194,7 +194,7 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 			}
 		}
 	}
-	if (strings.ToLower(m.Content) == "surrender" && m.Author.Mention() == initiator.ID && fightInit == true) || (m.Content == "surrender" && m.Author.Mention() == responder.ID && fightInit == true) {
+	if strings.ToLower(m.Content) == "surrender" && (m.Author.Mention() == initiator.ID || m.Author.Mention() == responder.ID) && fightInit == true {
 		responder.turn = false
 		initiator.turn = false
 		fightInit = false
