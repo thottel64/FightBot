@@ -125,8 +125,8 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 		hpstring := strconv.Itoa(responder.HP)
 		initiator.turn = false
 		responder.turn = true
-		if Dmg == 0 {
-			_, err = s.ChannelMessageSend(m.ChannelID, "you missed your punch. "+initiator.ID+" takes no damage.")
+		if Dmg <= 0 {
+			_, err = s.ChannelMessageSend(m.ChannelID, "you missed your punch. "+responder.ID+" takes no damage.")
 			if err != nil {
 				log.Println("Could not send message \n", err)
 			}
@@ -166,13 +166,13 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 		hpstring := strconv.Itoa(initiator.HP)
 		initiator.turn = true
 		responder.turn = false
-		if Dmg == 0 {
+		if Dmg <= 0 {
 			_, err = s.ChannelMessageSend(m.ChannelID, "you missed your punch. "+initiator.ID+" takes no damage.")
 			if err != nil {
 				log.Println("Could not send message \n", err)
 			}
 		}
-		if Dmg > 1 {
+		if Dmg > 0 {
 			_, err = s.ChannelMessageSend(m.ChannelID, "you punched "+initiator.ID+" for "+dmgstring+" damage. Leaving them with "+hpstring+" HP left.")
 			if err != nil {
 				log.Println("Could not send message \n", err)
