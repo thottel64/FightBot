@@ -66,7 +66,7 @@ func main() {
 // message is created on any channel that the authenticated bot has access to.
 func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 	var err error
-	rand.Seed(time.Now().UnixNano())
+	rand.NewSource(time.Now().UnixNano())
 	if m.Author.ID == s.State.User.ID {
 		return
 	}
@@ -76,6 +76,20 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 		_, err = s.ChannelMessageSend(m.ChannelID, "Fightbot is here to help. Initiate a fight by typing `fight` followed by a space and a ping to the user you wish to fight. Ex. `fight @User1` . Then to attack, simply type in `punch`. Once a player's HP reaches 0, they lose. ")
 		if err != nil {
 			log.Println("Could not send message \n", err)
+		}
+	}
+
+	if strings.ToLower(m.Content) == "ppme" {
+		var pp []byte
+		pp = append(pp, 56)
+		for i := 1; i <= rand.Intn(20); i++ {
+			pp = append(pp, 61)
+		}
+		pp = append(pp, 68)
+		_, err = s.ChannelMessageSend(m.ChannelID, string(pp))
+		if err != nil {
+			log.Println(err)
+			return
 		}
 	}
 	// if the user types in fight followed by another user's mention, the bot initiates a fight between the two users
