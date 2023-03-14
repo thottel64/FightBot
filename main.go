@@ -92,12 +92,6 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 			return
 		}
 	}
-	if strings.ToLower(m.Content) == "yeah" {
-		_, err = s.ChannelMessageSend(m.ChannelID, "https://www.google.com/url?sa=i&url=https%3A%2F%2Ftenor.com%2Fview%2Feli-drake-la-knight-dummy-yeah-impact-fact-of-life-gif-27373446&psig=AOvVaw2RicNLTskNJhybk4RVcmsr&ust=1678908039480000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCKCI4_uR3P0CFQAAAAAdAAAAABAI")
-		if err != nil {
-			log.Println(err)
-		}
-	}
 	// if the user types in fight followed by another user's mention, the bot initiates a fight between the two users
 	if len(m.Content) >= 8 && (strings.ToLower(m.Content[0:8]) == "fight <@") && string(m.Content[len(m.Content)-1]) == ">" && fightInit == false {
 		if m.Content == strings.ToLower("fight <@>") {
