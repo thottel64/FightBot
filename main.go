@@ -78,7 +78,12 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 			log.Println("Could not send message \n", err)
 		}
 	}
-
+	if time.Now().Weekday() == 2 {
+		_, err = s.ChannelMessageSend("541777196960972823", "https://cdn.discordapp.com/attachments/541777196960972823/1082672588377038928/trim.90BBCD1D-8BB0-4F11-94C0-2EF8826FFA18.mp4")
+		if err != nil {
+			log.Println(err)
+		}
+	}
 	if strings.ToLower(m.Content) == "ppme" {
 		var pp []byte
 		pp = append(pp, 56)
