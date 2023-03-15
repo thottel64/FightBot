@@ -93,7 +93,7 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 		}
 	}
 	if strings.ToLower(m.Content) == "yeah" {
-		_, err = s.ChannelMessageSend(m.ChannelID, "https://www.google.com/url?sa=i&url=https%3A%2F%2Ftenor.com%2Fview%2Feli-drake-la-knight-dummy-yeah-impact-fact-of-life-gif-27373446&psig=AOvVaw2RicNLTskNJhybk4RVcmsr&ust=1678908039480000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCKCI4_uR3P0CFQAAAAAdAAAAABAI")
+		_, err = s.ChannelMessageSend(m.ChannelID, "https://media.tenor.com/CVZlYWQibqoAAAAC/eli-drake-la-knight.gif")
 		if err != nil {
 			log.Println(err)
 		}
