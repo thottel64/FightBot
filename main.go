@@ -35,16 +35,6 @@ func main() {
 		log.Println("error creating Discord session, \n", err)
 		return
 	}
-	ticker := time.NewTicker(24 * time.Hour)
-	for now := range ticker.C {
-		if now.Weekday() == time.Tuesday && now.Hour() == 8 {
-			_, err = dg.ChannelMessageSend("541777196960972823", "https://cdn.discordapp.com/attachments/541777196960972823/1080147477962969169/trim.D7D0EB9D-23C2-4D9E-BE42-1F248EE65D14.mp4")
-			if err != nil {
-				log.Println(err)
-				continue
-			}
-		}
-	}
 
 	// Register the Fightbot func as a callback for messages that meet the required parameters for events.
 	dg.AddHandler(FightBot)
