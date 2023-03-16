@@ -39,6 +39,17 @@ func main() {
 	// Register the Fightbot func as a callback for messages that meet the required parameters for events.
 	dg.AddHandler(FightBot)
 
+	ticker := time.NewTicker(24 * time.Hour)
+	for now := range ticker.C {
+		if now.Weekday() == time.Tuesday && now.Hour() == 8 {
+			_, err = dg.ChannelMessageSend("541777196960972823", "https://cdn.discordapp.com/attachments/541777196960972823/1080147477962969169/trim.D7D0EB9D-23C2-4D9E-BE42-1F248EE65D14.mp4")
+			if err != nil {
+				log.Println(err)
+				continue
+			}
+		}
+	}
+
 	dg.Identify.Intents = discordgo.IntentsGuildMessages
 
 	// Open a websocket connection to Discord and begin listening. Luckily, the DiscordGo package makes this easy by calling the .Open method
@@ -78,11 +89,8 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 			log.Println("Could not send message \n", err)
 		}
 	}
-	if time.Now().Weekday() == 2 {
-		_, err = s.ChannelMessageSend("541777196960972823", "https://cdn.discordapp.com/attachments/541777196960972823/1082672588377038928/trim.90BBCD1D-8BB0-4F11-94C0-2EF8826FFA18.mp4")
-		if err != nil {
-			log.Println(err)
-		}
+	if strings.ToLower(m.Content) == "chicken salad" {
+		_, err = s.ChannelMessageSend(m.ChannelID, "https://cdn.discordapp.com/attachments/541777196960972823/1083122814116188280/Snapinsta.app_334279527_508487954817631_2059612099667519088_n-1.mp4")
 	}
 	if strings.ToLower(m.Content) == "ppme" {
 		var pp []byte
