@@ -35,10 +35,6 @@ func main() {
 		log.Println("error creating Discord session, \n", err)
 		return
 	}
-
-	// Register the Fightbot func as a callback for messages that meet the required parameters for events.
-	dg.AddHandler(FightBot)
-
 	ticker := time.NewTicker(24 * time.Hour)
 	for now := range ticker.C {
 		if now.Weekday() == time.Tuesday && now.Hour() == 8 {
@@ -49,6 +45,9 @@ func main() {
 			}
 		}
 	}
+
+	// Register the Fightbot func as a callback for messages that meet the required parameters for events.
+	dg.AddHandler(FightBot)
 
 	dg.Identify.Intents = discordgo.IntentsGuildMessages
 
