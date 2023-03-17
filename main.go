@@ -111,7 +111,7 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 			log.Println(err)
 		}
 	}
-	victory := []string{"Just worked their opponent into a shoot brother - HH", "Just laid the smacketh down", "Checked their opponent into the SmackDown Hotel", "Just Benoit'd their opponent", "is the winner of the round", "Congratulation, a winner is you", "Congratulation, a winner is yourself"}
+	victory := []string{" just worked their opponent into a shoot brother - HH", " just laid the smacketh down", " checked their opponent into the SmackDown Hotel", "just Benoit'd their opponent", "is the winner of the round", ". Congratulation, a winner is you", "Congratulation, a winner is yourself", " did it for the Fear. They did it for the people."}
 	// if the user types in fight followed by another user's mention, the bot initiates a fight between the two users
 	if len(m.Content) >= 8 && (strings.ToLower(m.Content[0:8]) == "fight <@") && string(m.Content[len(m.Content)-1]) == ">" && fightInit == false {
 		if m.Content == strings.ToLower("fight <@>") {
