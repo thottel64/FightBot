@@ -89,7 +89,7 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 			log.Println("Could not send message \n", err)
 		}
 	}
-	if strings.ToLower(m.Content) == "chicken salad" {
+	if strings.ToLower(m.Content) == "chicken salad" || strings.ToLower(m.Content) == "chicken salad baby" {
 		_, err = s.ChannelMessageSend(m.ChannelID, "https://cdn.discordapp.com/attachments/541777196960972823/1083122814116188280/Snapinsta.app_334279527_508487954817631_2059612099667519088_n-1.mp4")
 	}
 	if strings.ToLower(m.Content) == "ppme" {
