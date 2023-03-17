@@ -54,6 +54,17 @@ func main() {
 	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt)
 	<-sc
 
+	ticker := time.NewTicker(time.Hour * 24)
+	for range ticker.C {
+		now := time.Now()
+		if now.Weekday() == time.Tuesday && now.Hour() == 8 {
+			_, err = dg.ChannelMessageSend("541777196960972823", "https://cdn.discordapp.com/attachments/541777196960972823/1082701592630939718/trim.3E740187-163F-4A67-B269-089201664E86.mp4")
+			if err != nil {
+				log.Println("Error sending message: ", err)
+			}
+		}
+	}
+
 	// Cleanly close down the Discord session.
 	err = dg.Close()
 	if err != nil {
@@ -100,6 +111,7 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 			log.Println(err)
 		}
 	}
+	victory := []string{"Just worked their opponent into a shoot brother - HH", "Just laid the smacketh down", "Checked their opponent into the SmackDown Hotel", "Just Benoit'd their opponent", "is the winner of the round", "Congratulation, a winner is you", "Congratulation, a winner is yourself"}
 	// if the user types in fight followed by another user's mention, the bot initiates a fight between the two users
 	if len(m.Content) >= 8 && (strings.ToLower(m.Content[0:8]) == "fight <@") && string(m.Content[len(m.Content)-1]) == ">" && fightInit == false {
 		if m.Content == strings.ToLower("fight <@>") {
@@ -161,7 +173,7 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 			}
 		}
 		if responder.HP <= 0 {
-			_, err = s.ChannelMessageSend(m.ChannelID, initiator.ID+" is your winner of the round!")
+			_, err = s.ChannelMessageSend(m.ChannelID, initiator.ID+victory[rand.Intn(len(victory))-1])
 			if err != nil {
 				log.Println("Could not send message \n", err)
 			}
@@ -201,7 +213,7 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 			}
 		}
 		if initiator.HP <= 0 {
-			_, err = s.ChannelMessageSend(m.ChannelID, responder.ID+" is your winner of the round!")
+			_, err = s.ChannelMessageSend(m.ChannelID, responder.ID+victory[rand.Intn(len(victory))-1])
 			if err != nil {
 				log.Println("Could not send message \n", err)
 			}
