@@ -105,7 +105,7 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 			return
 		}
 	}
-	if strings.ToLower(m.Content) == "yeah" {
+	if strings.ToLower(m.Content) == "dummy" {
 		_, err = s.ChannelMessageSend(m.ChannelID, "https://media.tenor.com/CVZlYWQibqoAAAAC/eli-drake-la-knight.gif")
 		if err != nil {
 			log.Println(err)
