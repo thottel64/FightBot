@@ -54,17 +54,6 @@ func main() {
 	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt)
 	<-sc
 
-	ticker := time.NewTicker(time.Hour * 24)
-	for range ticker.C {
-		now := time.Now()
-		if now.Weekday() == time.Tuesday && now.Hour() == 8 {
-			_, err = dg.ChannelMessageSend("541777196960972823", "https://cdn.discordapp.com/attachments/541777196960972823/1082701592630939718/trim.3E740187-163F-4A67-B269-089201664E86.mp4")
-			if err != nil {
-				log.Println("Error sending message: ", err)
-			}
-		}
-	}
-
 	// Cleanly close down the Discord session.
 	err = dg.Close()
 	if err != nil {
@@ -107,6 +96,15 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 	}
 	if strings.ToLower(m.Content) == "dummy" {
 		_, err = s.ChannelMessageSend(m.ChannelID, "https://media.tenor.com/CVZlYWQibqoAAAAC/eli-drake-la-knight.gif")
+		if err != nil {
+			log.Println(err)
+		}
+	}
+	if strings.ToLower(m.Content) == "cum tuesday" {
+		_, err = s.ChannelMessageSend(m.ChannelID, "https://cdn.discordapp.com/attachments/541777196960972823/1087736359445331999/trim.8A4DE359-87FF-43E9-9B58-9FD546D84D6E.mov")
+	}
+	if strings.ToLower(m.Content) == "roo roo roo" {
+		_, err = s.ChannelMessageSend(m.ChannelID, "https://cdn.discordapp.com/attachments/1090009484065243317/1090009531427328000/rapidsave.com_this_is_deadlock-u8hftfdeucna1.mov")
 		if err != nil {
 			log.Println(err)
 		}
