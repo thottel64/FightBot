@@ -149,6 +149,7 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 	if strings.ToLower(m.Content) == "punch" && m.Author.Mention() == initiator.ID && initiator.turn == true && fightInit == true {
 		Dmg := rand.Intn(60)
+		Dmg = isCritical(Dmg)
 		responder.HP = responder.HP - Dmg
 		if responder.HP < 0 {
 			responder.HP = 0
@@ -190,6 +191,7 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 	if strings.ToLower(m.Content) == "punch" && m.Author.Mention() == responder.ID && responder.turn == true && fightInit == true {
 		Dmg := rand.Intn(60)
+		Dmg = isCritical(Dmg)
 		initiator.HP = initiator.HP - Dmg
 		if initiator.HP < 0 {
 			initiator.HP = 0
@@ -235,4 +237,12 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 			log.Println("Could not send message \n", err)
 		}
 	}
+}
+
+func isCritical(dmg int) int {
+	crit := rand.Intn(100)
+	if crit == 100 {
+		return crit
+	}
+	return dmg
 }
