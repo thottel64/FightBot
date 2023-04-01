@@ -100,7 +100,7 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 	}
 	if strings.ToLower(m.Content) == "cum tuesday" {
 		if time.Now().Weekday() != 2 {
-			_, err = s.ChannelMessageSend(m.ChannelID, "It's not tuesay. What are you doing?")
+			_, err = s.ChannelMessageSend(m.ChannelID, "It's not tuesday. What are you doing?")
 			return
 		}
 		_, err = s.ChannelMessageSend(m.ChannelID, "https://cdn.discordapp.com/attachments/541777196960972823/1087736359445331999/trim.8A4DE359-87FF-43E9-9B58-9FD546D84D6E.mov")
