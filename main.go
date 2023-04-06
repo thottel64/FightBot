@@ -98,6 +98,18 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 			log.Println(err)
 		}
 	}
+	if strings.ToLower(m.Content) == "rip bozo" {
+		_, err = s.ChannelMessageSend(m.ChannelID, "https://tenor.com/view/rip-bozo-gif-22294771")
+		if err != nil {
+			log.Println(err)
+		}
+	}
+	if strings.ToLower(m.Content) == "bing chilling" {
+		_, err = s.ChannelMessageSend(m.ChannelID, "https://cdn.discordapp.com/attachments/541777196960972823/916031183819780096/bing_chilling.mp4")
+		if err != nil {
+			log.Println(err)
+		}
+	}
 	if strings.ToLower(m.Content) == "call the police" {
 		_, err = s.ChannelMessageSend(m.ChannelID, "https://cdn.discordapp.com/attachments/541777196960972823/1093618550897377330/ssstwitter.com_1680652085075.mov")
 		if err != nil {
