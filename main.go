@@ -122,6 +122,18 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 			log.Println(err)
 		}
 	}
+	if strings.ToLower(m.Content) == "you understand me huh" {
+		_, err = s.ChannelMessageSend(m.ChannelID, "https://cdn.discordapp.com/attachments/541778031824601118/1093671064132911224/InShot_20230402_151950892.mov")
+		if err != nil {
+			log.Println(err)
+		}
+	}
+	if strings.ToLower(m.Content) == "stephen a is having a bad day" {
+		_, err = s.ChannelMessageSend(m.ChannelID, "https://cdn.discordapp.com/attachments/541778031824601118/1086294612282450050/trim.A3BC70F2-8E12-45A7-A9DB-337F51023987.mov")
+		if err != nil {
+			log.Println(err)
+		}
+	}
 	if strings.ToLower(m.Content) == "cum tuesday" {
 		if time.Now().Weekday() != 2 {
 			_, err = s.ChannelMessageSend(m.ChannelID, "It's not tuesday. What are you doing?")
