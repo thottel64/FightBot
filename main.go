@@ -303,12 +303,11 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 			}
 		}
 	}
-
-	if strings.ToLower(m.Content) == "adminSurrender" && (m.Author.ID == "662473903221768211" || m.Author.ID == "338011653394268165" || m.Author.ID == "151844140383076352" || m.Author.ID == "1020808621010980924") {
+	if strings.ToLower(m.Content) == "adminSurrender" && (m.Author.ID == "662473903221768211" || m.Author.ID == "338011653394268165" || m.Author.ID == "151844140383076352" || m.Author.ID == "1020808621010980924") && fightInit {
 		responder.turn = false
 		initiator.turn = false
 		fightInit = false
-		_, err = s.ChannelMessageSend(m.ChannelID, "The referee ended the fight. https://media.tenor.com/JS6Vtap-SYEAAAAC/wwe-wrestling.gif")
+		_, err = s.ChannelMessageSend(m.ChannelID, "the referee has ended this fight. https://i.gifer.com/7BnI.gif")
 		if err != nil {
 			log.Println("Could not send message \n", err)
 		}
