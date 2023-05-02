@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/bwmarrin/discordgo"
 	"log"
 	"math/rand"
 	"os"
@@ -11,6 +10,8 @@ import (
 	"strings"
 	"syscall"
 	"time"
+
+	"github.com/bwmarrin/discordgo"
 )
 
 // Global variables listed together
@@ -78,6 +79,9 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 	}
 	if strings.ToLower(m.Content) == "chicken salad" || strings.ToLower(m.Content) == "chicken salad baby" {
 		_, err = s.ChannelMessageSend(m.ChannelID, "https://cdn.discordapp.com/attachments/541777196960972823/1083122814116188280/Snapinsta.app_334279527_508487954817631_2059612099667519088_n-1.mp4")
+		if err != nil {
+			log.Println(err)
+		}
 	}
 	if strings.ToLower(m.Content) == "ppme" {
 		var pp []byte
@@ -104,6 +108,7 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 			log.Println(err)
 		}
 	}
+
 	if strings.ToLower(m.Content) == "bing chilling" {
 		_, err = s.ChannelMessageSend(m.ChannelID, "https://cdn.discordapp.com/attachments/541777196960972823/916031183819780096/bing_chilling.mp4")
 		if err != nil {
@@ -180,9 +185,9 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 		if err != nil {
 			log.Println("Could not send message \n", err)
 		}
-		turncounter = rand.Intn(1)
+		turncounter = rand.Intn(2)
 		fightInit = true
-		if turncounter == 0 {
+		if turncounter == 0 || turncounter == 2 {
 			initiator.turn = true
 			_, err = s.ChannelMessageSend(m.ChannelID, initiator.ID+" it's your turn.")
 			if err != nil {
@@ -205,7 +210,7 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 		}
 	}
 
-	if strings.ToLower(m.Content) == "punch" && m.Author.Mention() == initiator.ID && initiator.turn == true && fightInit == true {
+	if strings.ToLower(m.Content) == "punch" && m.Author.Mention() == initiator.ID && initiator.turn && fightInit {
 		Dmg := rand.Intn(60)
 		Dmg = isCritical(Dmg)
 		if Dmg == 100 {
@@ -253,7 +258,7 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 	}
 
-	if strings.ToLower(m.Content) == "punch" && m.Author.Mention() == responder.ID && responder.turn == true && fightInit == true {
+	if strings.ToLower(m.Content) == "punch" && m.Author.Mention() == responder.ID && responder.turn && fightInit {
 		Dmg := rand.Intn(60)
 		Dmg = isCritical(Dmg)
 		if Dmg == 100 {
