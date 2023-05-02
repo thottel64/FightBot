@@ -303,7 +303,7 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 			}
 		}
 	}
-	if strings.ToLower(m.Content) == "adminSurrender" && (m.Author.ID == "662473903221768211" || m.Author.ID == "338011653394268165" || m.Author.ID == "151844140383076352" || m.Author.ID == "1020808621010980924") && fightInit {
+	if strings.ToLower(m.Content) == "adminSurrender" && (m.Author.ID == "<@662473903221768211>" || m.Author.ID == "<@338011653394268165>" || m.Author.ID == "<@151844140383076352>" || m.Author.ID == "<@1020808621010980924>") && fightInit {
 		responder.turn = false
 		initiator.turn = false
 		fightInit = false
