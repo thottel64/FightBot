@@ -303,21 +303,22 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 			}
 		}
 	}
-	if strings.ToLower(m.Content) == "surrender" && (m.Author.Mention() == initiator.ID || m.Author.Mention() == responder.ID) && fightInit == true {
-		responder.turn = false
-		initiator.turn = false
-		fightInit = false
-		_, err = s.ChannelMessageSend(m.ChannelID, "No contest. The fight is over.")
-		if err != nil {
-			log.Println("Could not send message \n", err)
-		}
-	}
 
 	if strings.ToLower(m.Content) == "adminSurrender" && (m.Author.ID == "662473903221768211" || m.Author.ID == "338011653394268165" || m.Author.ID == "151844140383076352" || m.Author.ID == "1020808621010980924") {
 		responder.turn = false
 		initiator.turn = false
 		fightInit = false
 		_, err = s.ChannelMessageSend(m.ChannelID, "The referee ended the fight. https://media.tenor.com/JS6Vtap-SYEAAAAC/wwe-wrestling.gif")
+		if err != nil {
+			log.Println("Could not send message \n", err)
+		}
+	}
+
+	if strings.ToLower(m.Content) == "surrender" && (m.Author.Mention() == initiator.ID || m.Author.Mention() == responder.ID) && fightInit == true {
+		responder.turn = false
+		initiator.turn = false
+		fightInit = false
+		_, err = s.ChannelMessageSend(m.ChannelID, "No contest. The fight is over.")
 		if err != nil {
 			log.Println("Could not send message \n", err)
 		}
