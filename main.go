@@ -73,7 +73,7 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 	if strings.ToLower(m.Content) == "fightbot help" {
 		_, err = s.ChannelMessageSend(m.ChannelID, "Fightbot is here to help. Initiate a fight by typing `fight` followed by a space and a ping to the user you wish to fight. Ex. `fight @User1` . Then to attack, simply type in `punch`. Once a player's HP reaches 0, they lose. \n"+
-			`To end a match preemptively type "surrender" and the match will end.`)
+			"To end a match preemptively type `surrender` and the match will end.")
 		if err != nil {
 			log.Println("Could not send message \n", err)
 		}
