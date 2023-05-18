@@ -72,7 +72,8 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 	var turncounter int
 
 	if strings.ToLower(m.Content) == "fightbot help" {
-		_, err = s.ChannelMessageSend(m.ChannelID, "Fightbot is here to help. Initiate a fight by typing `fight` followed by a space and a ping to the user you wish to fight. Ex. `fight @User1` . Then to attack, simply type in `punch`. Once a player's HP reaches 0, they lose. ")
+		_, err = s.ChannelMessageSend(m.ChannelID, "Fightbot is here to help. Initiate a fight by typing `fight` followed by a space and a ping to the user you wish to fight. Ex. `fight @User1` . Then to attack, simply type in `punch`. Once a player's HP reaches 0, they lose. \n"+
+			`To end a match preemptively type "surrender" and the match will end.`)
 		if err != nil {
 			log.Println("Could not send message \n", err)
 		}
@@ -303,7 +304,7 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 			}
 		}
 	}
-	if strings.ToLower(m.Content) == "adminSurrender" && (m.Author.ID == "<@662473903221768211>" || m.Author.ID == "<@338011653394268165>" || m.Author.ID == "<@151844140383076352>" || m.Author.ID == "<@1020808621010980924>") && fightInit {
+	if strings.ToLower(m.Content) == "fightbot stop the damn match" && fightInit {
 		responder.turn = false
 		initiator.turn = false
 		fightInit = false
