@@ -304,7 +304,7 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 			}
 		}
 	}
-	if strings.ToLower(m.Content) == "fightbot stop the damn match" && fightInit {
+	if strings.ToLower(m.Content) == "fightbot stop the damn match" && fightInit && (m.Author.ID == "1020808621010980924" || m.Author.ID == "662473903221768211" || m.Author.ID == "338011653394268165" || m.Author.ID == "151844140383076352") {
 		responder.turn = false
 		initiator.turn = false
 		fightInit = false
