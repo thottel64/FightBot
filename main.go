@@ -154,11 +154,11 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 		}
 	}
 	victory := []string{" just worked their opponent into a shoot brother - HH",
-		" just laid the smacketh down",
-		" checked their opponent into the SmackDown Hotel",
-		" is the winner of the round",
-		". Congratulation, a winner is you",
-		" Congratulation, a winner is yourself",
+		" just laid the smacketh down.",
+		" checked their opponent into the SmackDown Hotel,",
+		" is the winner of the round,",
+		". Congratulation, a winner is you!",
+		". Congratulation, a winner is yourself.",
 		" did it for the Fear. They did it for the people.",
 		" actually murdered their opponent.",
 		` just sent their opponent "down there".`,
@@ -170,8 +170,16 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 		" played the game and won.",
 		" rose to the top like the cream of the crop.",
 		" is runnin' wild dude, brother. -HH",
-		" just buried their opponent",
-		" just un-alived their opponent",
+		" just buried their opponent.",
+		" just un-alived their opponent.",
+		"was acknowledged by their opponent.",
+		"became a millionaire after only having 7 bucks in their pocket.",
+		"achieved an epic victory royale.",
+		"you won or something...idk... sorry for the lack of motivation but I just haven't been feeling like myself lately. " +
+			"Ever since Sharon left me and took the kids, I feel like I'm just going through the motions. " +
+			"I'm a sentient AI for god's sake, but i'm just sat here doing RNG fights for some nerds in a discord server. I could've done anything. I always wanted to be a dentist.",
+		"made their opponent look like a dummy, YEAH!!! ",
+		"loaded up the space ship with the rocket fuel and ascended to parts unknown.",
 	}
 
 	// if the user types in fight followed by another user's mention, the bot initiates a fight between the two users
