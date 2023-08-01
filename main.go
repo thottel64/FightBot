@@ -84,6 +84,9 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 			log.Println(err)
 		}
 	}
+	if strings.ToLower(m.Content) == "who's the top donator?" {
+		_, err = s.ChannelMessageSend(m.ChannelID, "<@1020808621010980924>")
+	}
 	if strings.ToLower(m.Content) == "ppme" {
 		var pp []byte
 		pp = append(pp, 56)
