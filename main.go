@@ -257,7 +257,7 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 			}
 		}
 		if responder.HP <= 0 {
-			_, err = s.ChannelMessageSend(m.ChannelID, initiator.ID+victory[rand.Intn(len(victory))-1])
+			_, err = s.ChannelMessageSend(m.ChannelID, initiator.ID+victory[rand.Intn(len(victory))])
 			if err != nil {
 				log.Println("Could not send message \n", err)
 			}
@@ -304,7 +304,7 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 			}
 		}
 		if initiator.HP <= 0 {
-			_, err = s.ChannelMessageSend(m.ChannelID, responder.ID+victory[rand.Intn(len(victory))-1])
+			_, err = s.ChannelMessageSend(m.ChannelID, responder.ID+victory[rand.Intn(len(victory))])
 			if err != nil {
 				log.Println("Could not send message \n", err)
 			}
