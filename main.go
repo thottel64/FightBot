@@ -84,9 +84,7 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 			log.Println(err)
 		}
 	}
-	if strings.ToLower(m.Content) == "who's the top donator?" {
-		_, err = s.ChannelMessageSend(m.ChannelID, "<@219676050152488960>")
-	}
+
 	if strings.ToLower(m.Content) == "ppme" {
 		var pp []byte
 		pp = append(pp, 56)
@@ -179,14 +177,21 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 		" is runnin' wild dude, brother. -HH",
 		" just buried their opponent.",
 		" just un-alived their opponent.",
-		"was acknowledged by their opponent.",
-		"became a millionaire after only having 7 bucks in their pocket.",
-		"achieved an epic victory royale.",
-		"you won or something...idk... sorry for the lack of motivation but I just haven't been feeling like myself lately. " +
+		" was acknowledged by their opponent.",
+		" became a millionaire after only having 7 bucks in their pocket.",
+		" achieved an epic victory royale.",
+		" you won or something...idk... sorry for the lack of motivation but I just haven't been feeling like myself lately. " +
 			"Ever since Sharon left me and took the kids, I feel like I'm just going through the motions. " +
 			"I'm a sentient AI for god's sake, but i'm just sat here doing RNG fights for some nerds in a discord server. I could've done anything. I always wanted to be a dentist.",
-		"made their opponent look like a dummy, YEAH!!! ",
-		"loaded up the space ship with the rocket fuel and ascended to parts unknown.",
+		" made their opponent look like a dummy, YEAH!!! ",
+		" loaded up the space ship with the rocket fuel and ascended to parts unknown.",
+		" ended the round with a skull crushing finale",
+		" put on an absolute slobberknocker and won the round",
+		" just committed a felony against their opponent",
+		" violated the geneva convention and won the round",
+		" probably committed war crimes against their opponent",
+		" ... dude are you okay? That was pretty violent. Do you wanna talk about it? " +
+			"Like yeah sure you won the round, but do you need help? Like... mentally?",
 	}
 
 	// if the user types in fight followed by another user's mention, the bot initiates a fight between the two users
