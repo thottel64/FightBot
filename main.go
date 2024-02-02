@@ -335,8 +335,7 @@ func FightBot(s *discordgo.Session, m *discordgo.MessageCreate) {
 	}
 
 	if strings.ToLower(m.Content) == "surrender" && (m.Author.Mention() == initiator.ID || m.Author.Mention() == responder.ID) && fightInit == true {
-		responder.turn = false
-		initiator.turn = false
+		initiator, responder = resetFight(initiator, responder)
 		fightInit = false
 		_, err = s.ChannelMessageSend(m.ChannelID, "No contest. The fight is over.")
 		if err != nil {
@@ -351,4 +350,17 @@ func isCritical(dmg int) int {
 		return crit
 	}
 	return dmg
+}
+
+func resetFight(initiator Fighter, responder Fighter) (Fighter, Fighter) {
+	blankFighter := Fighter{
+		ID:   "",
+		HP:   0,
+		turn: false,
+	}
+
+	initiator = blankFighter
+	responder = blankFighter
+
+	return initiator, responder
 }
